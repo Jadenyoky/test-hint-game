@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <main>
+    <div class="header">
+      <p>Hint Game</p>
+    </div>
+    <div class="container">
+      <div class="side-game">
+        <div class="letters"></div>
+
+        <div class="options">
+          <button onclick="check()">
+            Check Word
+          </button>
+          <button>Hint</button>
+        </div>
+
+        <div class="tip">Typing Letters in Fields ...</div>
+      </div>
+
+      <div class="info">
+        <p>Key Colors</p>
+        <div class="colors">
+          <div class="letter-right">Letter is right and place</div>
+          <div class="letter-place">Letter is right but not in place</div>
+          <div class="letter-wrong">
+            Letter is wrong and not exist in word
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+
+</html>
