@@ -1,4 +1,7 @@
 const letters = document.querySelector(".letters");
+const header = document.querySelector(".header");
+const tip = document.querySelector(".tip");
+
 const englishWords = [
   "apple",
   "banana",
@@ -28,6 +31,9 @@ const englishWords = [
   "zeppelin",
 ];
 let randomWord = englishWords[Math.floor(Math.random() * englishWords.length)];
+const rw = document.createElement("h1");
+rw.innerHTML = `- ${randomWord}`;
+header.append(rw);
 
 let numberTry = 5;
 let numberLetters = randomWord.length;
@@ -63,7 +69,7 @@ function generateInputs() {
 
   const inputs = document.querySelectorAll("input");
   inputs.forEach((input, index) => {
-    input.oninput = () => {
+    input.addEventListener("input", function () {
       const next = inputs[index + 1];
       const prev = inputs[index - 1];
       if (next && input.value !== "" && input.value !== " ") {
@@ -81,8 +87,9 @@ function generateInputs() {
       //   }
       // }
       console.log(inputs[index], inputs[index].value);
-    };
-    input.onkeydown = (e) => {
+    });
+
+    input.addEventListener("keydown", function (e) {
       const current = Array.from(inputs).indexOf(e.target);
       if (e.key === "ArrowRight") {
         const next = current + 1;
@@ -95,46 +102,39 @@ function generateInputs() {
           inputs[prev].focus();
         }
       }
-    };
+    });
   });
 }
 
 function check() {
-  let success = true;
-  // checkBtn.current.disabled = true;
+  let success;
   for (let i = 1; i <= numberLetters; i++) {
     const input = document.querySelector(`#try-${currentTry}-letter-${i}`);
     const letter = input.value;
     const currentLetter = randomWord[i - 1];
 
-    // console.log(input);
-
     if (letter === currentLetter) {
       input.classList.add("right");
+      input.disabled = true;
+      success = true;
     } else if (randomWord.includes(letter) && letter !== "") {
       input.classList.add("not-place");
       success = false;
+      input.disabled = true;
     } else if (!randomWord.includes(letter) && letter !== "") {
       input.classList.add("wrong");
       success = false;
-    }
-    if (
-      input.classList.contains("right") ||
-      input.classList.contains("not-place") ||
-      input.classList.contains("wrong")
-    ) {
       input.disabled = true;
     }
 
-    const tip = document.querySelector(".tip");
-    if (success && letter !== "") {
-      tip.innerHTML = `Great! You Win ... The Word is 
-      <p>${randomWord.toUpperCase()}</p>`;
-      tip.classList.add("win");
-    } else if (!success && letter !== "") {
-      tip.innerHTML = `Wrong!, Try Again ..`;
-      tip.classList.add("lose");
-    }
+    // if (success && letter !== "") {
+    //   tip.innerHTML = `Great! You Win ... The Word is
+    //   <p>${randomWord.toUpperCase()}</p>`;
+    //   tip.classList.add("win");
+    // } else if (!success && letter !== "") {
+    //   tip.innerHTML = `Wrong!, Try Again ..`;
+    //   tip.classList.add("lose");
+    // }
   }
 }
 
