@@ -121,20 +121,22 @@ function check() {
       input.classList.add("not-place");
       success = false;
       input.disabled = true;
-    } else if (!randomWord.includes(letter) && letter !== "") {
+    } else {
       input.classList.add("wrong");
       success = false;
       input.disabled = true;
     }
 
-    // if (success && letter !== "") {
-    //   tip.innerHTML = `Great! You Win ... The Word is
-    //   <p>${randomWord.toUpperCase()}</p>`;
-    //   tip.classList.add("win");
-    // } else if (!success && letter !== "") {
-    //   tip.innerHTML = `Wrong!, Try Again ..`;
-    //   tip.classList.add("lose");
-    // }
+    if (success) {
+       tip.innerHTML = `Great! You Win ... The Word is
+       <p>${randomWord.toUpperCase()}</p>`;
+      tip.classList.add("win");
+    } else if (!success) {
+     tip.innerHTML = `Wrong!, Try Again ..`;
+      tip.classList.add("lose");
+     } else {
+tip.innerHTML = 'TYPING LETTER .....'
+}
   }
 }
 
