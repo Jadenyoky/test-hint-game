@@ -107,7 +107,7 @@ function generateInputs() {
 }
 
 function check() {
-  let success;
+  let success = true;
   for (let i = 1; i <= numberLetters; i++) {
     const input = document.querySelector(`#try-${currentTry}-letter-${i}`);
     const letter = input.value;
@@ -117,7 +117,7 @@ function check() {
       input.classList.add("right");
       input.disabled = true;
       success = true;
-    } else if (randomWord.includes(letter) && letter !== "") {
+    } else if (randomWord.includes(letter)) {
       input.classList.add("not-place");
       success = false;
       input.disabled = true;
@@ -134,9 +134,7 @@ function check() {
     } else if (!success) {
      tip.innerHTML = `Wrong!, Try Again ..`;
       tip.classList.add("lose");
-     } else {
-tip.innerHTML = 'TYPING LETTER .....'
-}
+     }
   }
 }
 
